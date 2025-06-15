@@ -1,0 +1,2 @@
+# Japanese_Text_Difficulty_Estimator
+日本語の難しさ予測
