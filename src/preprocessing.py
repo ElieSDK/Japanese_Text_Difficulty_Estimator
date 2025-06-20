@@ -39,6 +39,9 @@ def preprocess_data():
     # Create a new column 'text_jp' containing only Japanese characters and punctuation
     df['text_jp'] = df['text'].str.replace(r'[^\u3040-\u30FF\u4E00-\u9FFF\u3000-\u303F]', '', regex=True)
 
+    # Optional filtering: drop rows with very long text to prevent tokenization errors
+    df = df[df['text'].apply(lambda x: isinstance(x, str) and len(x) < 5000)]
+
     return df
 
 if __name__ == "__main__":
