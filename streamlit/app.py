@@ -20,17 +20,17 @@ def load_model():
 
 model = load_model()
 
-# === Interface utilisateur ===
-st.title("Prédicteur de niveau JLPT")
+# === Streamlit UI ===
+st.title("JLPT Level Predictor")
 
-user_input = st.text_area("Entrez un texte japonais à analyser:")
+user_input = st.text_area("Enter Japanese text to analyze:")
 
-if st.button("Prédire le niveau"):
+if st.button("Predict Level"):
     if user_input.strip():
         try:
             prediction = model.predict([user_input])[0]
-            st.success(f"Niveau prédit : JLPT {prediction}")
+            st.success(f"Predicted JLPT Level: N{prediction}")
         except Exception as e:
-            st.error(f"Erreur de prédiction : {e}")
+            st.error(f"Prediction error: {e}")
     else:
-        st.warning("Veuillez entrer un texte.")
+        st.warning("Please enter some text.")
