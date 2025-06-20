@@ -1,8 +1,8 @@
 import os
 import pandas as pd
 
-from pdf2image import convert_from_path
-import pytesseract
+# from pdf2image import convert_from_path
+# import pytesseract
 from config import POPPLER_PATH, TESSERACT_CMD
 
 # Set the tesseract executable path from config
