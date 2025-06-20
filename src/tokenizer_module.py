@@ -1,24 +1,30 @@
 import pandas as pd
 from janome.tokenizer import Tokenizer
 
-# Initialize tokenizer
+# Initialize Janome tokenizer
 tokenizer = Tokenizer()
 
-def tokenize_japanese(text, max_length=8000):
+def tokenize_japanese(text, max_length=5000):
     """
-    Tokenize Japanese text.
-    - Truncates long text to max_length.
-    - Catches tokenization errors.
+    Tokenize a Japanese string into a list of token surfaces.
+    Handles empty, long, or malformed input safely.
     """
-    if not isinstance(text, str) or text.strip() == "":
+    if not isinstance(text, str):
         return []
     
-    text = text.strip()[:max_length]  # Truncate long text
+    text = text.strip()
+    if text == "":
+        return []
+    
+    # Truncate long input to avoid Janome crashing
+    if len(text) > max_length:
+        text = text[:max_length]
 
     try:
-        return [token.surface for token in tokenizer.tokenize(text)]
+        tokens = tokenizer.tokenize(text)
+        return [token.surface for token in tokens]
     except Exception as e:
-        print(f"[Janome ERROR] Tokenization failed: {e} — text: {text[:30]}...")
+        print(f"[Tokenization Error] {e} — text was: {text[:30]}...")
         return []
 
 def apply_tokenization(df):
