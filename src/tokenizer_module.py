@@ -5,14 +5,13 @@ from janome.tokenizer import Tokenizer
 tokenizer = Tokenizer()
 
 def tokenize_japanese(text):
-    """
-    Tokenize a Japanese text string into a list of token surfaces.
-    Returns an empty list if the input text is NaN.
-    """
     if pd.isna(text) or not isinstance(text, str) or text.strip() == "":
         return []
-    # Tokenize and return list of token surfaces (actual text parts)
-    return [token.surface for token in tokenizer.tokenize(text)]
+    try:
+        return [token.surface for token in tokenizer.tokenize(text)]
+    except Exception as e:
+        print(f"Tokenization error for text: {text[:30]}... Error: {e}")
+        return []
 
 def apply_tokenization(df):
     """
