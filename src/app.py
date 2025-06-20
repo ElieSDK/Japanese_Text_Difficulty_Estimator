@@ -1,5 +1,5 @@
 # from scraper import main as scraper_main
-from ocr import main as ocr_main
+# from ocr import main as ocr_main
 from preprocessing import preprocess_data
 from tokenizer_module import apply_tokenization
 
