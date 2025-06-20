@@ -1,7 +1,0 @@
-pandas
-janome
-xgboost
-scikit-learn
-scipy
-streamlit
-mecab-python3
