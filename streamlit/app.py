@@ -4,7 +4,9 @@ import joblib
 # Load the trained pipeline (e.g., TF-IDF + Logistic Regression)
 @st.cache_resource
 def load_model():
-    return joblib.load("logreg_pipeline.pkl")
+    current_dir = os.path.dirname(__file__)
+    model_path = os.path.join(current_dir, "logreg_pipeline.pkl")
+    return joblib.load(model_path)
 
 model = load_model()
 
