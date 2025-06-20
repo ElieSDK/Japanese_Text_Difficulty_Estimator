@@ -5,3 +5,4 @@ pytesseract
 janome
 scikit-learn
 scipy
+streamlit
