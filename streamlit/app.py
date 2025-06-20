@@ -19,3 +19,18 @@ def load_model():
     return model
 
 model = load_model()
+
+# === Interface utilisateur ===
+st.title("Prédicteur de niveau JLPT")
+
+user_input = st.text_area("Entrez un texte japonais à analyser:")
+
+if st.button("Prédire le niveau"):
+    if user_input.strip():
+        try:
+            prediction = model.predict([user_input])[0]
+            st.success(f"Niveau prédit : JLPT {prediction}")
+        except Exception as e:
+            st.error(f"Erreur de prédiction : {e}")
+    else:
+        st.warning("Veuillez entrer un texte.")
