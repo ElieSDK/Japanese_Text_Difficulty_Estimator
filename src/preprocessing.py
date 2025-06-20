@@ -6,9 +6,9 @@ def preprocess_data():
     split long texts into chunks, and merge datasets into a single DataFrame.
     """
     # Load existing JLPT reading exercises CSV
-    df = pd.read_csv('data/jlpt_reading_exercises_n1_to_n5.csv', encoding='utf-8')
+    df = pd.read_csv('outputs/jlpt_reading_exercises_n1_to_n5.csv', encoding='utf-8')
     # Load OCR extracted JLPT dataset CSV
-    df2 = pd.read_csv('data/jlpt_dataset_from_pdfs.csv', encoding='utf-8-sig')
+    df2 = pd.read_csv('outputs/jlpt_dataset_from_pdfs.csv', encoding='utf-8-sig')
 
     # Remove any characters that are not Japanese scripts (hiragana, katakana, kanji, punctuation)
     df2['text'] = df2['text'].str.replace(r'[^\u3040-\u30FF\u4E00-\u9FFF\u3000-\u303F]', '', regex=True)
