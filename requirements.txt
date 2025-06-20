@@ -6,4 +6,3 @@ janome
 scikit-learn
 scipy
 streamlit
-mecab-python3
