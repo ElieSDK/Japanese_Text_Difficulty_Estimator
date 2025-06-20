@@ -1,59 +1,50 @@
+import streamlit as st
 import pandas as pd
 import re
 from janome.tokenizer import Tokenizer
 
-# Initialisation du tokenizer Janome
-tokenizer = Tokenizer()
-
 def clean_text(text):
-    """
-    Enlève les caractères non imprimables et invisibles problématiques.
-    """
     return re.sub(r'[\x00-\x1f\x7f-\x9f]', '', text)
 
-def tokenize_japanese(text, max_length=5000):
+def tokenize_japanese(text, max_chunk=1000):
     """
-    Tokenize un texte japonais en une liste de tokens.
-    Gère les entrées vides, non-string, ou trop longues.
+    Tokenize un texte japonais en découpant en chunks pour éviter bugs Janome,
+    instancie Tokenizer à chaque appel pour éviter problèmes dans Streamlit.
     """
     if not isinstance(text, str):
         return []
     text = clean_text(text.strip())
     if text == "":
         return []
-    if len(text) > max_length:
-        text = text[:max_length]
 
-    try:
-        tokens = tokenizer.tokenize(text)
-        return [token.surface for token in tokens]
-    except Exception as e:
-        print(f"[Tokenization Error] {e} — text was: {text[:30]}...")
-        return []
+    tokens = []
+    tokenizer = Tokenizer()  # Instanciation locale ici
+    for i in range(0, len(text), max_chunk):
+        chunk = text[i:i+max_chunk]
+        try:
+            tokens.extend([token.surface for token in tokenizer.tokenize(chunk)])
+        except Exception as e:
+            st.warning(f"[Tokenization error on chunk] {e} — chunk preview: {chunk[:30]}...")
+            continue
+    return tokens
 
 def apply_tokenization(df):
-    """
-    Applique la tokenization à la colonne 'text' d'un DataFrame.
-    Retourne une copie du DataFrame avec une nouvelle colonne 'tokens'.
-    """
     df = df.copy()
-    df['text'] = df['text'].fillna('').astype(str)  # Remplacer NaN et forcer str
+    df['text'] = df['text'].fillna('').astype(str)
     df['tokens'] = df['text'].apply(tokenize_japanese)
     return df
 
-# Exemple d'utilisation
+# Exemple minimal Streamlit
+def main():
+    st.title("Test Tokenization Janome")
+
+    uploaded_file = st.file_uploader("Upload CSV with a 'text' column")
+    if uploaded_file is not None:
+        df = pd.read_csv(uploaded_file)
+        st.write("Data before tokenization:", df.head())
+
+        df_tokenized = apply_tokenization(df)
+        st.write("Data after tokenization:", df_tokenized.head())
+
 if __name__ == "__main__":
-    # Exemple de DataFrame
-    data = {
-        'text': [
-            "これはテストです。",
-            None,
-            "",
-            "  ",
-            "非常に長いテキスト" * 1000,  # Texte très long
-            "特殊文字\u0000\u001fを含むテキスト"
-        ]
-    }
-    df = pd.DataFrame(data)
-    df = apply_tokenization(df)
-    print(df[['text', 'tokens']])
+    main()
