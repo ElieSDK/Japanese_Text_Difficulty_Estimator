@@ -1,4 +1,4 @@
-# 🇯🇵 JLPT Level Classifier
+# JLPT Level Classifier
 
 This project processes and classifies Japanese reading texts by JLPT level (N5 to N1) using OCR, NLP, and machine learning.
 
