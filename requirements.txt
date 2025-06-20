@@ -3,7 +3,6 @@ selenium
 pdf2image
 pytesseract
 janome
-xgboost
 scikit-learn
 scipy
 streamlit
