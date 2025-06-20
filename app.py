@@ -73,13 +73,7 @@ if st.button("Guess the level"):
             features[pos] = pos_counts.get(pos, 0)
 
         feature_order = ['tokens_nb', 'kanji_count', 'kanji_ratio', 'unique_kanji_count', 'katakana_word_count'] + pos_list
-
-        # On suppose que le vectorizer est dans pipeline.named_steps['vectorizer'] ? Si non, il faut le charger aussi.
-        # Ici, je suppose que le pipeline ne contient que scaler + logreg (pas vectorizer), donc on doit transformer TF-IDF séparément.
-
-        # IMPORTANT : Si ton pipeline contient scaler + logreg uniquement, il faut vectorizer avant.
-
-        # Si vectorizer n'est pas dans le pipeline, il faut charger vectorizer.pkl séparément
+        
         with open("vectorizer.pkl", "rb") as f:
             vectorizer = pickle.load(f)
 
@@ -87,7 +81,6 @@ if st.button("Guess the level"):
         X_num = csr_matrix([[features.get(col, 0) for col in feature_order]])
         X_final = hstack([X_text, X_num])
 
-        # Maintenant, prédire avec pipeline qui contient scaler + modèle
         pred = pipeline.predict(X_final)[0]
         proba = pipeline.predict_proba(X_final)[0]
 
