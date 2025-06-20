@@ -8,11 +8,14 @@ This project processes and classifies Japanese reading texts by JLPT level (N5 t
 
 ```
 jlpt-classifier/
-├── data/                # Input data (PDFs and CSV)
-├── outputs/             # Generated datasets and models
-├── src/                 # Python source files
-├── requirements.txt     # Project dependencies
-└── README.md            # Project documentation
+├── data/                # Input data (PDFs used for OCR)
+├── outputs/             # Generated datasets (CSV) and trained model files (PKL)
+├── src/                 # Core Python scripts for scraping, OCR, preprocessing, and training
+├── streamlit/           # Minimal Streamlit app for deployment 
+├── app.py               # Full internal pipeline (scraping + OCR + training + prediction)
+├── requirements.txt     # Full project dependencies
+└── README.md            # Project documentation and usage instructions
+
 ```
 
 ---
