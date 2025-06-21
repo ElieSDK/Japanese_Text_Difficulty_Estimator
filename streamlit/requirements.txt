@@ -1,8 +1,6 @@
-pandas
-selenium
-pdf2image
-pytesseract
-scikit-learn
-scipy
 streamlit
-mecab-python3
+scikit-learn
+joblib
+scipy
+numpy
+janome
