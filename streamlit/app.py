@@ -8,11 +8,11 @@ from janome.tokenizer import Tokenizer
 tokenizer = Tokenizer()
 
 # Load the full pipeline (scaler + logistic regression) from a pickle file
-with open("logreg_pipeline.pkl", "rb") as f:
+with open("streamlit/logreg_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
 
 # Load the TF-IDF vectorizer separately from file (not included in pipeline)
-with open("vectorizer.pkl", "rb") as f:
+with open("streamlit/vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
 
 # Function to clean text by removing unwanted characters except Japanese scripts and common punctuation
