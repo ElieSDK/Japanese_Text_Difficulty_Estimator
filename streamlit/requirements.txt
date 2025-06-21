@@ -1,4 +1,7 @@
 pandas
+selenium
+pdf2image
+pytesseract
 scikit-learn
 scipy
 streamlit
