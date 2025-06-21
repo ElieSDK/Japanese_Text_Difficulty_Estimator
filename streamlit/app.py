@@ -111,3 +111,7 @@ if st.button("Guess the level"):
         st.subheader("Probabilities for each level:")
         for jlpt_level in sorted(proba_dict.keys()):
             st.write(f"**{jlpt_level}** : {proba_dict[jlpt_level]:.2%}")
+
+# Footer with GitHub link
+st.markdown("---")
+st.markdown("🔗 [View source code on GitHub](https://github.com/ElieSDK)")
