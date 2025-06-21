@@ -1,3 +1,5 @@
-streamlit
+pandas
 scikit-learn
-joblib
+scipy
+streamlit
+mecab-python3
