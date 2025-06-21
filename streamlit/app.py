@@ -4,6 +4,13 @@ import re
 from scipy.sparse import hstack, csr_matrix
 import MeCab
 
+# Get the folder where app.py is located
+current_dir = Path(__file__).parent
+
+# Correct paths to model and vectorizer
+model_path = current_dir / "logreg_pipeline.pkl"
+vectorizer_path = current_dir / "vectorizer.pkl"
+
 with open("logreg_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
 
