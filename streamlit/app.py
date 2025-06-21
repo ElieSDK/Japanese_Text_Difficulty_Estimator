@@ -63,10 +63,6 @@ st.title("Japanese Text Difficulty Estimator")
 # Text input from the user
 user_input = st.text_area("Enter a Japanese text (reading, sentence, etc.)", height=200)
 
-# Footer (always visible)
-st.markdown("---")
-st.markdown("🔗 [View source code on GitHub](https://github.com/ElieSDK)")
-
 # When the button is clicked
 if st.button("Guess the level"):
     if not user_input.strip():
@@ -115,4 +111,7 @@ if st.button("Guess the level"):
         st.subheader("Probabilities for each level:")
         for jlpt_level in sorted(proba_dict.keys()):
             st.write(f"**{jlpt_level}** : {proba_dict[jlpt_level]:.2%}")
-
+            
+# Footer (always visible)
+st.markdown("---")
+st.markdown("🔗 [View source code on GitHub](https://github.com/ElieSDK/Japanese_Text_Difficulty_Estimator)")
