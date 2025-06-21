@@ -7,16 +7,16 @@ import MeCab
 from pathlib import Path
 import joblib
 
-# Get current working directory
-current_dir = Path.cwd()
+try:
+    current_dir = Path(__file__).parent
+except NameError:
+    current_dir = Path(sys.argv[0]).parent
 
-# Build paths
 model_path = current_dir / "logreg_pipeline.pkl"
 vectorizer_path = current_dir / "vectorizer.pkl"
 
-# Load model and vectorizer
-model = joblib.load(model_path)
-vectorizer = joblib.load(vectorizer_path)
+print("Model path:", model_path)
+print("Model exists?", model_path.exists())
 
 with open("logreg_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
