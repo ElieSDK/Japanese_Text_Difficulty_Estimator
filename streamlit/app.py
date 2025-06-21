@@ -4,20 +4,6 @@ import re
 from scipy.sparse import hstack, csr_matrix
 import MeCab
 
-from pathlib import Path
-import joblib
-
-try:
-    current_dir = Path(__file__).parent
-except NameError:
-    current_dir = Path(sys.argv[0]).parent
-
-model_path = current_dir / "logreg_pipeline.pkl"
-vectorizer_path = current_dir / "vectorizer.pkl"
-
-print("Model path:", model_path)
-print("Model exists?", model_path.exists())
-
 with open("logreg_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
 
