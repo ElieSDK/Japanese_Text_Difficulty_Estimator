@@ -1,6 +1,6 @@
-streamlit
+numpy
+scipy
 scikit-learn
 joblib
-scipy
-numpy
 janome
+streamlit
