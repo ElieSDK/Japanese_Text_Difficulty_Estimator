@@ -1,8 +1,8 @@
 pandas
-selenium
-pdf2image
-pytesseract
-scikit-learn
 scipy
-streamlit
+scikit-learn
 mecab-python3
+pytesseract
+pdf2image
+selenium
+streamlit
