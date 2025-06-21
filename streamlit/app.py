@@ -4,8 +4,10 @@ import re
 from scipy.sparse import hstack, csr_matrix
 import MeCab
 
-# Get the folder where app.py is located
-current_dir = Path(__file__).parent
+try:
+    current_dir = Path(__file__).parent.resolve()
+except NameError:
+    current_dir = Path(sys.argv[0]).parent.resolve()
 
 # Correct paths to model and vectorizer
 model_path = current_dir / "logreg_pipeline.pkl"
