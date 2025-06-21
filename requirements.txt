@@ -2,7 +2,7 @@ pandas
 selenium
 pdf2image
 pytesseract
-janome
 scikit-learn
 scipy
 streamlit
+mecab-python3
