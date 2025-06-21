@@ -53,7 +53,7 @@ python main.py
 ## Dependencies
 
 - `pandas`, `numpy`
-- `janome` (Japanese tokenizer)
+- `mecab` (Japanese tokenizer)
 - `pdf2image`, `pytesseract` (OCR)
 - `scikit-learn`
 - `selenium`
