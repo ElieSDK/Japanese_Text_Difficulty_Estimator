@@ -114,4 +114,4 @@ if st.button("Guess the level"):
             
 # Footer (always visible)
 st.markdown("---")
-st.markdown("🔗 [View source code on GitHub](https://github.com/ElieSDK/Japanese_Text_Difficulty_Estimator)")
+st.markdown("⚙️ [View source code on GitHub](https://github.com/ElieSDK/Japanese_Text_Difficulty_Estimator)")
