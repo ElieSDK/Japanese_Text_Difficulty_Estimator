@@ -4,7 +4,6 @@ import re
 from scipy.sparse import hstack, csr_matrix
 import MeCab
 
-# --- Chargement du pipeline complet (scaler + modèle) ---
 with open("logreg_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
 
