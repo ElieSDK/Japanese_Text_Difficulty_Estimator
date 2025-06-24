@@ -50,7 +50,7 @@ streamlit run app.py
 1. **Scraping** JLPT reading materials from websites.
 2. **OCR** of JLPT practice PDFs.
 3. **Preprocessing** and cleaning of Japanese texts.
-4. **Tokenization** using Janome or Mecab.
+4. **Tokenization** using Janome.
 5. **Feature engineering**: counts of kanji, POS tags, etc.
 6. **Vectorization** using TF-IDF + numeric features.
 7. **Model training**: Logistic Regression.
@@ -61,7 +61,7 @@ streamlit run app.py
 ## Dependencies
 
 - `pandas`, `numpy`
-- `mecab` (Japanese tokenizer)
+- `janome` (Japanese tokenizer)
 - `pdf2image`, `pytesseract` (OCR)
 - `scikit-learn`
 - `selenium`
@@ -81,5 +81,5 @@ See [`requirements.txt`](./requirements.txt) for details.
 
 ## Notes
 
-- Works on Windows with [Poppler](http://blog.alivate.com.au/poppler-windows/) and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
+- Works on Windows with [Poppler](https://poppler.freedesktop.org/) and [Tesseract OCR](https://github.com/tesseract-ocr/tesseract).
 - Requires ChromeDriver for scraping.
