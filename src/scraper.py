@@ -8,11 +8,6 @@ from selenium.webdriver.common.by import By
 from config import CHROMEDRIVER_PATH
 
 def get_exercise_text(driver, url):
-    """
-    Use Selenium to open the given URL and extract the text content
-    inside the div with CSS class 'entry clearfix'.
-    Returns the stripped text if successful, or None if an error occurs.
-    """
     try: 
         driver.get(url)
         time.sleep(2)  # Wait for the page to load
@@ -22,12 +17,6 @@ def get_exercise_text(driver, url):
         return None
 
 def crawl_level(driver, level):
-    """
-    Crawl JLPT reading exercise pages for a specific JLPT level.
-    The function tries multiple URL patterns and pages until
-    a maximum number of consecutive failures occurs.
-    Returns a list of dicts with 'url', 'text', and 'level'.
-    """
     base_url_1 = f"https://japanesetest4you.com/japanese-language-proficiency-test-jlpt-{level}-reading-exercise-{{}}"
     base_url_2 = f"https://japanesetest4you.com/jlpt-{level}-reading-exercise-{{}}"
     max_failures = 4  # Stop crawling after 4 consecutive failures
