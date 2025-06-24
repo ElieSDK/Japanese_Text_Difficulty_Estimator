@@ -1,7 +1,6 @@
 import pandas as pd
 from janome.tokenizer import Tokenizer
 
-# Initialize Janome tokenizer
 janome_tokenizer = Tokenizer()
 
 def tokenize_japanese(text):
