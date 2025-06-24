@@ -6,12 +6,6 @@ from sklearn.pipeline import Pipeline
 from sklearn.metrics import accuracy_score, classification_report
 
 def train_model(X, y):
-    """
-    Train a logistic regression model on the feature matrix X and target y,
-    including data splitting, scaling, training, evaluation, and model saving.
-    """
-    # Split data into training and test sets (80% train, 20% test),
-    # stratified to keep class balance
     X_train, X_test, y_train, y_test = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
