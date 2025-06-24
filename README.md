@@ -1,8 +1,7 @@
 # JLPT Level Classifier
 
 This project processes and classifies Japanese reading texts by JLPT level (N5 to N1) using OCR, NLP, and machine learning.
-A Streamlit app is deployed online here for easy text-level prediction:
-https://jptextdifficultyestimator.streamlit.app/
+A Streamlit app is deployed online here for easy text-level prediction:  https://jptextdifficultyestimator.streamlit.app/
 
 ---
 
