@@ -21,11 +21,12 @@ def ocr_pdf(pdf_path, poppler_path=POPPLER_PATH):
         return ""  # Return empty string on error
     
     text = ""
-    # Iterate over all images (pages)
-    for i, image in enumerate(images):  # (7)
-        # Extract Japanese text from image using pytesseract
+    # Loop over each image (i.e., each page of the PDF)
+    for image in images: 
+        # Use Tesseract to extract Japanese text from the image
         page_text = pytesseract.image_to_string(image, lang='jpn')
-        text += page_text + "\n"  # Append text from each page with newline
+        # Add the extracted text to the total, with a newline between pages
+        text += page_text + "\n" 
     return text
 
 def main():
