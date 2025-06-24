@@ -3,6 +3,7 @@ from collections import Counter
 
 import pandas as pd
 from janome.tokenizer import Tokenizer
+from sklearn.preprocessing import MinMaxScaler
 
 # Initialize the Japanese tokenizer from Janome
 tokenizer = Tokenizer()
@@ -113,5 +114,18 @@ def extract_features(df):
 
     # Drop unnecessary columns, ignoring errors if columns do not exist
     df = df.drop(columns=['filler', 'other', 'url', 'text'], errors='ignore')
+
+        # === Normalize selected numerical features ===
+    cols_to_normalize = [
+        'tokens_nb', 'kanji_count', 'unique_kanji_count', 'katakana_word_count',
+        'noun', 'verb', 'adjective', 'adverb', 'particle', 'auxiliary_verb',
+        'adnominal_adjective', 'interjection', 'conjunction', 'prefix', 'symbol'
+    ]
+    
+    # Some POS columns may not exist if unused — keep only the ones present
+    existing_cols = [col for col in cols_to_normalize if col in df.columns]
+
+    scaler = MinMaxScaler()
+    df[existing_cols] = scaler.fit_transform(df[existing_cols])
     
     return df
