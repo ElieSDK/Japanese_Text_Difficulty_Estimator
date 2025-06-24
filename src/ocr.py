@@ -9,10 +9,6 @@ from config import POPPLER_PATH, TESSERACT_CMD
 pytesseract.pytesseract.tesseract_cmd = TESSERACT_CMD
 
 def ocr_pdf(pdf_path, poppler_path=POPPLER_PATH):
-    """
-    Convert each page of the PDF to an image, then perform OCR (optical character recognition)
-    on each image to extract Japanese text. Returns the concatenated text from all pages.
-    """
     try:
         # Convert PDF pages to images at 300 dpi using poppler
         images = convert_from_path(pdf_path, dpi=300, poppler_path=poppler_path)
