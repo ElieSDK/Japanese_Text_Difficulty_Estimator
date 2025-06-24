@@ -9,11 +9,6 @@ from sklearn.preprocessing import MinMaxScaler
 tokenizer = Tokenizer()
 
 def clean_tokens(token_list):
-    """
-    Clean the list of tokens by stripping whitespace, removing newlines,
-    and keeping only tokens that consist of Japanese characters
-    (hiragana, katakana, kanji, and the prolonged sound mark).
-    """
     cleaned = []
     for token in token_list:
         token = token.strip().replace('\n', '')
@@ -23,11 +18,6 @@ def clean_tokens(token_list):
     return cleaned
 
 def count_script_ratio(text):
-    """
-    Calculate the ratio of kanji characters in the text compared to the total
-    number of Japanese script characters (kanji + hiragana + katakana).
-    Returns 0 if text contains no Japanese characters.
-    """
     kanji = re.findall(r'[\u4e00-\u9FFF]', text)
     hiragana = re.findall(r'[\u3040-\u309F]', text)
     katakana = re.findall(r'[\u30A0-\u30FF]', text)
@@ -35,10 +25,6 @@ def count_script_ratio(text):
     return len(kanji) / total if total else 0
 
 def pos_count_from_text(text):
-    """
-    Tokenize the text and count the occurrences of each part of speech (POS).
-    Returns a dictionary with POS tags as keys and their counts as values.
-    """
     tokens = tokenizer.tokenize(text)
     # Extract coarse POS (first part before comma)
     pos_list = [token.part_of_speech.split(',')[0] for token in tokens]
@@ -46,32 +32,14 @@ def pos_count_from_text(text):
     return dict(pos_counts)
 
 def count_unique_kanji(text):
-    """
-    Count the number of unique kanji characters in the text.
-    """
     kanji_list = re.findall(r'[\u4e00-\u9faf]', text)
     return len(set(kanji_list))
 
 def count_katakana_words(text):
-    """
-    Count the number of katakana words in the text.
-    A katakana word is defined here as a sequence of two or more katakana characters.
-    """
     katakana_words = re.findall(r'[ァ-ンー]{2,}', text)
     return len(katakana_words)
 
 def extract_features(df):
-    """
-    Given a DataFrame with columns 'text' and 'tokens', extract linguistic features:
-    - Clean tokens
-    - Count tokens
-    - Count kanji characters
-    - Calculate kanji ratio
-    - Count parts of speech occurrences
-    - Count unique kanji
-    - Count katakana words
-    Then remove unwanted columns and return the enriched DataFrame.
-    """
     # Clean tokens in the DataFrame
     df['tokens'] = df['tokens'].apply(clean_tokens)
 
