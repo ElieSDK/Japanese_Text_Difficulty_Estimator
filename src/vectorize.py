@@ -3,18 +3,9 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from scipy.sparse import hstack, csr_matrix
 
 def join_tokens(tokens):
-    """
-    Join a list of tokens into a single string separated by spaces,
-    suitable for TF-IDF vectorization.
-    """
     return ' '.join(tokens)
 
 def vectorize_text(df):
-    """
-    Convert tokenized text and numerical features from the DataFrame into
-    a combined sparse feature matrix suitable for machine learning.
-    Returns the feature matrix X and target labels y.
-    """
     # Join tokens into strings for TF-IDF
     df['joined_tokens'] = df['tokens'].apply(join_tokens)
 
