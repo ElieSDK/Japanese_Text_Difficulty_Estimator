@@ -5,4 +5,4 @@ mecab-python3
 pytesseract
 pdf2image
 selenium
-streamlit
+janome
