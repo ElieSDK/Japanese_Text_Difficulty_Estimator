@@ -1,17 +1,17 @@
 import pandas as pd
-import MeCab
+from janome.tokenizer import Tokenizer
 
-# Initialize MeCab tokenizer in wakati mode (word segmentation)
-tagger = MeCab.Tagger("-Owakati")
+# Initialize Janome tokenizer
+janome_tokenizer = Tokenizer()
 
 def tokenize_japanese(text):
     """
-    Tokenize a Japanese text string into a list of token surfaces using MeCab.
+    Tokenize a Japanese text string into a list of token surfaces using Janome.
     Returns an empty list if the input text is NaN.
     """
     if pd.isna(text):
         return []
-    return tagger.parse(text).strip().split()
+    return [token.surface for token in janome_tokenizer.tokenize(text)]
 
 def apply_tokenization(df):
     """
