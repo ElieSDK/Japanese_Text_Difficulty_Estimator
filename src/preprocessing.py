@@ -1,10 +1,6 @@
 import pandas as pd
 
 def preprocess_data():
-    """
-    Load JLPT reading exercise datasets, clean and preprocess the text data,
-    split long texts into chunks, and merge datasets into a single DataFrame.
-    """
     # Load existing JLPT reading exercises CSV
     df = pd.read_csv('jlpt_reading_exercises_n1_to_n5.csv', encoding='utf-8')
     # Load OCR extracted JLPT dataset CSV
