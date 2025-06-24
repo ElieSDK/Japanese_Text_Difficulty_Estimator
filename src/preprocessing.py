@@ -13,17 +13,13 @@ def preprocess_data():
     # Remove any characters that are not Japanese scripts (hiragana, katakana, kanji, punctuation)
     df2['text'] = df2['text'].str.replace(r'[^\u3040-\u30FF\u4E00-\u9FFF\u3000-\u303F]', '', regex=True)
 
-    new_rows = []
-    # Iterate over each row to split long texts into smaller chunks of 1000 characters max
-    for i, row in df2.iterrows():
-        text = row['text']
-        level = row['level']
-        # Split text into chunks of length 1000 characters
-        chunks = [text[j:j+1000] for j in range(0, len(text), 1000)]
-        # Create a new row for each chunk with the same level
-        for chunk in chunks:
-            new_rows.append({'level': level, 'text': chunk})
-
+    new_rows = []    
+    # Loop over both 'text' and 'level' columns at the same time
+    for text, level in zip(df2['text'], df2['level']):
+        chunks = [text[j:j+1000] for j in range(0, len(text), 1000)] # Split the text into chunks of 1000 characters each
+        for chunk in chunks: # Loop through each text chunk
+            new_rows.append({'level': level, 'text': chunk})  # Add each chunk as a dictionary to the new_rows list, keeping the original level
+            
     # Create a new DataFrame from the split chunks
     df2_split = pd.DataFrame(new_rows)
 
