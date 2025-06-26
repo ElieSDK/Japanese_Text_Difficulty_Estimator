@@ -13,7 +13,7 @@ vectorizer_path = BASE_PATH / "vectorizer.pkl"
 with open(pipeline_path, 'rb') as f:
     pipeline = pickle.load(f)
     
-with open("vectorizer.pkl", "rb") as f:
+with open(vectorizer_path, "rb") as f:
     vectorizer = pickle.load(f)
 
 # === Preprocessing utilities ===
