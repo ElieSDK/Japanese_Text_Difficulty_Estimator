@@ -1,3 +1,6 @@
+import os
+st.write("CWD:", os.getcwd())
+
 import streamlit as st
 import pickle
 import re
