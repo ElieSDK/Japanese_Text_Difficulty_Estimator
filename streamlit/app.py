@@ -6,11 +6,15 @@ from pathlib import Path
 
 
 BASE_PATH = Path(__file__).parent
+
 pipeline_path = BASE_PATH / 'logreg_pipeline.pkl'
+vectorizer_path = BASE_PATH / "vectorizer.pkl"
+
 with open(pipeline_path, 'rb') as f:
     pipeline = pickle.load(f)
     
-vectorizer_path = BASE_PATH / "vectorizer.pkl"
+with open("vectorizer.pkl", "rb") as f:
+    vectorizer = pickle.load(f)
 
 # === Preprocessing utilities ===
 
