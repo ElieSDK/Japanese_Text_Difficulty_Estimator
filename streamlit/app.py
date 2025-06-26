@@ -1,4 +1,6 @@
 import os
+import streamlit as st
+
 st.write("CWD:", os.getcwd())
 
 import streamlit as st
