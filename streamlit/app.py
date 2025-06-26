@@ -1,15 +1,19 @@
-import os
-import streamlit as st
-
-st.write("CWD:", os.getcwd())
-
 import streamlit as st
 import pickle
 import re
 from scipy.sparse import hstack, csr_matrix
 
-# === Load models and vectorizer ===
+from pathlib import Path
+import pickle
+import streamlit as st
 
+BASE_PATH = Path(__file__).parent  # folder containing app.py
+
+pipeline_path = BASE_PATH / "logreg_pipeline.pkl"
+vectorizer_path = BASE_PATH / "vectorizer.pkl"
+
+# === Load models and vectorizer ===
+'''
 # Load the trained pipeline (includes scaling and logistic regression)
 with open("logreg_pipeline.pkl", "rb") as f:
     pipeline = pickle.load(f)
@@ -17,7 +21,7 @@ with open("logreg_pipeline.pkl", "rb") as f:
 # Load the TF-IDF vectorizer
 with open("vectorizer.pkl", "rb") as f:
     vectorizer = pickle.load(f)
-
+'''
 # === Preprocessing utilities ===
 
 # Clean input text by removing non-Japanese characters and keeping basic punctuation
