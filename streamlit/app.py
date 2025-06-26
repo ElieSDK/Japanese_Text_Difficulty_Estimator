@@ -13,6 +13,7 @@ pipeline_path = BASE_PATH / "logreg_pipeline.pkl"
 vectorizer_path = BASE_PATH / "vectorizer.pkl"
 
 st.write("Vectorizer type:", type(vectorizer))
+st.write("CWD:", os.getcwd())
 
 # === Preprocessing utilities ===
 
