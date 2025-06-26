@@ -4,10 +4,12 @@ import re
 from scipy.sparse import hstack, csr_matrix
 from pathlib import Path
 
-BASE_PATH = Path(__file__).parent
 
-# === Load models and vectorizer ===
-pipeline_path = BASE_PATH / "logreg_pipeline.pkl"
+BASE_PATH = Path(__file__).parent
+pipeline_path = BASE_PATH / 'logreg_pipeline.pkl'
+with open(pipeline_path, 'rb') as f:
+    pipeline = pickle.load(f)
+    
 vectorizer_path = BASE_PATH / "vectorizer.pkl"
 
 # === Preprocessing utilities ===
