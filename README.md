@@ -58,6 +58,26 @@ streamlit run app.py
 
 ---
 
+## Model Results
+
+| Class | Precision | Recall | F1-score | Support |
+|-------|-----------|--------|----------|---------|
+| N1    | 0.72      | 0.76   | 0.74     | 34      |
+| N2    | 0.74      | 0.71   | 0.72     | 35      |
+| N3    | 1.00      | 0.89   | 0.94     | 18      |
+| N4    | 0.75      | 0.92   | 0.83     | 13      |
+| N5    | 1.00      | 0.78   | 0.88     | 9       |
+
+**Overall Accuracy**: 0.79
+
+**Comment**:  
+- The model performs well overall, achieving 79% accuracy.  
+- High recall for small classes (N3, N5) may indicate overfitting due to low sample size.  
+- Larger classes (N1, N2) have moderate F1-scores (~0.73), suggesting room for improvement.  
+- Future work could include more data, feature engineering, or more robust classifiers like Random Forest or XGBoost.
+
+---
+
 ## Dependencies
 
 - `pandas`, `numpy`
