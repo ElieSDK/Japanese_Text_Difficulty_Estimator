@@ -21,17 +21,11 @@ def train_model(X, y):
         ))
     ])
 
-    # Train the pipeline on the training data
     pipeline.fit(X_train, y_train)
-
-    # Predict on the test data
     y_pred = pipeline.predict(X_test)
-
-    # Print evaluation metrics
     print("Logistic Regression Results")
     print("Accuracy:", accuracy_score(y_test, y_pred))
     print(classification_report(y_test, y_pred))
 
-    # Save the trained pipeline to a file for later use
     with open("logreg_pipeline.pkl", "wb") as f:
         pickle.dump(pipeline, f)
