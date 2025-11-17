@@ -51,7 +51,7 @@ def crawl_level(driver, level):
             failure_count += 1  # Increment failure count if all URLs fail
             print(f"Failure {failure_count} / {max_failures}")
 
-        i += 1  # Go to next page number
+        i += 1
 
     print(f"End of JLPT crawl {level.upper()}, {len(results)} texts scraped\n")
     return results
@@ -66,14 +66,12 @@ def main():
     levels = ['n1', 'n2', 'n3', 'n4', 'n5']  # JLPT levels to crawl
     all_results = []
 
-    # Crawl exercises for each JLPT level and collect results
     for level in levels:
         results = crawl_level(driver, level)
         all_results.extend(results)
 
-    driver.quit()  # Close the browser when done
+    driver.quit()
 
-    # Save results to CSV
     df = pd.DataFrame(all_results)
     df.to_csv('jlpt_reading_exercises_n1_to_n5.csv', index=False, encoding='utf-8')
 
