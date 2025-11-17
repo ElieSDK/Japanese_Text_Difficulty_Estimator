@@ -40,26 +40,15 @@ def count_katakana_words(text):
     return len(katakana_words)
 
 def extract_features(df):
-    # Clean tokens in the DataFrame
     df['tokens'] = df['tokens'].apply(clean_tokens)
-
-    # Count number of tokens per row
     df['tokens_nb'] = df['tokens'].apply(len)
-    # Replace missing text with empty string
     df['text'] = df['text'].fillna('')
-    # Count kanji characters in text
     df['kanji_count'] = df['text'].apply(re.compile(r'[\u4e00-\u9faf]').findall).apply(len)
-    # Calculate ratio of kanji among all Japanese scripts
     df['kanji_ratio'] = df['text'].apply(count_script_ratio)
-    # Get POS counts as a dictionary for each text
     df['pos_counts'] = df['text'].apply(pos_count_from_text)
-
-    # Convert POS count dictionaries into separate columns with zeros for missing POS
     df_pos = df['pos_counts'].apply(pd.Series).fillna(0).astype(int)
-    # Merge POS count columns back into the main DataFrame and drop the dict column
     df = pd.concat([df, df_pos], axis=1).drop(columns=['pos_counts'])
 
-    # Rename Japanese POS columns to English names
     df.rename(columns={
         '名詞': 'noun',
         '動詞': 'verb',
@@ -76,24 +65,19 @@ def extract_features(df):
         'その他': 'other'
     }, inplace=True)
 
-    # Count unique kanji characters and katakana words
     df["unique_kanji_count"] = df["text"].apply(count_unique_kanji)
     df["katakana_word_count"] = df["text"].apply(count_katakana_words)
 
-    # Drop unnecessary columns, ignoring errors if columns do not exist
     df = df.drop(columns=['filler', 'other', 'url', 'text'], errors='ignore')
 
-        # === Normalize selected numerical features ===
     cols_to_normalize = [
         'tokens_nb', 'kanji_count', 'unique_kanji_count', 'katakana_word_count',
         'noun', 'verb', 'adjective', 'adverb', 'particle', 'auxiliary_verb',
         'adnominal_adjective', 'interjection', 'conjunction', 'prefix', 'symbol'
     ]
-    
-    # Some POS columns may not exist if unused — keep only the ones present
-    existing_cols = [col for col in cols_to_normalize if col in df.columns]
 
+    existing_cols = [col for col in cols_to_normalize if col in df.columns]
     scaler = MinMaxScaler()
     df[existing_cols] = scaler.fit_transform(df[existing_cols])
-    
     return df
+
